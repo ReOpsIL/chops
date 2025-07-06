@@ -19,7 +19,7 @@ NC='\033[0m' # No Color
 # Configuration
 DRY_RUN=false
 SPECIFIC_SECTION=""
-CHOPS_CMD="cargo run --"
+CHOPS_CMD="RUSTFLAGS=-Awarnings cargo run --"
 DELAY_BETWEEN_COMMANDS=2
 
 show_help() {

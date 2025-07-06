@@ -20,9 +20,9 @@ pub struct ClaudeClient {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClaudeConfig {
     pub max_tokens: u32,
-    pub temperature: f64,
-    pub top_p: f64,
-    pub top_k: Option<u32>,
+    // pub temperature: f64,
+    // pub top_p: f64,
+    // pub top_k: Option<u32>,
     pub stop_sequences: Vec<String>,
     pub timeout_seconds: u64,
     pub retry_attempts: u8,
@@ -43,11 +43,11 @@ pub struct ClaudeRequest {
     pub model: String,
     pub messages: Vec<ClaudeMessage>,
     pub max_tokens: u32,
-    pub temperature: f64,
-    pub top_p: Option<f64>,
-    pub top_k: Option<u32>,
+    // pub temperature: f64,
+    // pub top_p: Option<f64>,
+    // pub top_k: Option<u32>,
     pub stop_sequences: Option<Vec<String>>,
-    pub system: Option<String>,
+    //pub system: Option<String>,
     pub stream: bool,
 }
 
@@ -62,7 +62,6 @@ pub struct ClaudeMessage {
 pub enum MessageRole {
     User,
     Assistant,
-    System,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -395,18 +394,21 @@ impl ClaudeClient {
                 content: prompt.to_string(),
             }],
             max_tokens: self.config.max_tokens,
-            temperature: self.config.temperature,
-            top_p: Some(self.config.top_p),
-            top_k: self.config.top_k,
+            // temperature: self.config.temperature,
+            // top_p: Some(self.config.top_p),
+            // top_k: self.config.top_k,
             stop_sequences: if self.config.stop_sequences.is_empty() {
                 None
             } else {
                 Some(self.config.stop_sequences.clone())
             },
-            system: None,
+            // system: None,
             stream: false,
         };
 
+        let r = serde_json::to_string(&request).unwrap();
+
+        //println!("------------\n{}------------\n",r);
         debug!("Making Claude API request to {}", self.base_url);
 
         let response = self.client
@@ -721,9 +723,9 @@ impl Default for ClaudeConfig {
     fn default() -> Self {
         Self {
             max_tokens: 4096,
-            temperature: 0.7,
-            top_p: 0.9,
-            top_k: None,
+            // temperature: 0.7,
+            // top_p: 0.9,
+            // top_k: Some(50),
             stop_sequences: Vec::new(),
             timeout_seconds: 120,
             retry_attempts: 3,
