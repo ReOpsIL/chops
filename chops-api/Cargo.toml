@@ -1,0 +1,21 @@
+[package]
+name = "chops-api"
+version = "0.1.0"
+edition = "2021"
+description = "Claude API client and AI interaction layer for CHOPS"
+license = "MIT"
+
+[dependencies]
+chops-core = { path = "../chops-core" }
+chops-persona = { path = "../chops-persona" }
+chops-chaos = { path = "../chops-chaos" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+reqwest = { workspace = true }
+tokio = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+regex = "1.0"

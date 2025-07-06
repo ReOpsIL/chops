@@ -1,0 +1,29 @@
+[package]
+name = "chops-cli"
+version = "0.1.0"
+edition = "2021"
+description = "CHOPS: The AI Code Whisperer - Reality-Bending Innovation Engine CLI"
+license = "MIT"
+
+[[bin]]
+name = "chops"
+path = "src/main.rs"
+
+[dependencies]
+chops-core = { path = "../chops-core" }
+chops-persona = { path = "../chops-persona" }
+chops-chaos = { path = "../chops-chaos" }
+chops-api = { path = "../chops-api" }
+clap = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+colored = "2.0"
+indicatif = "0.17"
+dialoguer = "0.11"
+console = "0.15"
+chrono = { workspace = true }
+uuid = { workspace = true }
